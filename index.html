@@ -1,8 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>Designer Task List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .designer-list {
+      max-width: 100%;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .designer {
+      display: flex;
+      align-items: flex-start;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      background-color: #ccc;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .details {
+      flex: 1;
+    }
+
+    .name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .task {
+      display: flex;
+      justify-content: space-between;
+      margin: 3px 0;
+      font-size: 13px;
+    }
+
+    .size {
+      background: #e0e0e0;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 12px;
+      color: #333;
+    }
+
+    #today{
+
+          font-size: 13px;
+          line-height: 18px;
+          font-weight: bold;
+    }
+
+  </style>
 </head>
 <body>
-  <h1>MX</h1>
+
+
+<p id="today"></p>
+
+
+<div class="designer-list">
+
+  <div class="designer">
+    <div class="avatar" style="background-image: url('https://ca.slack-edge.com/E07UFG9853K-U01HZHC55FA-14156c1147dd-512');"></div>
+    <div class="details">
+      <div class="name">Dalia</div>
+      <div class="task"><span>Annual Report: Print Design</span><span class="size">M</span></div>
+      <div class="task"><span>2026 College & Univ. Collateral</span><span class="size">S</span></div>
+      <div class="task"><span>PPS Materials</span><span class="size">S</span></div>    
+    </div>
+  </div>
+
+
+
+<div class="designer">
+    <div class="avatar" style="background-image: url('https://ca.slack-edge.com/E07UFG9853K-U05FY0D866T-66fe4f979055-512');"></div>
+    <div class="details">
+      <div class="name">Juliann</div>
+      <div class="task"><span>Daily News Brief: Finalizing</span><span class="size">S</span></div>
+      <div class="task"><span>Connecting The Council: R2 Design</span><span class="size">S</span></div>
+      <div class="task"><span>GCT: Research Tool Testing</span><span class="size">S</span></div>    
+    </div>
+  </div>
+
+
+
+  <div class="designer">
+    <div class="avatar" style="background-image: url('https://ca.slack-edge.com/E07UFG9853K-UBR3SU9FW-f31afeb2ec66-512');"></div>
+    <div class="details">
+      <div class="name">Michael</div>
+      <div class="task"><span>Datwrapper Automation: Map Batching</span><span class="size">M</span></div>
+      <div class="task"><span>Legacy Embed Support: Discovery</span><span class="size">S</span></div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="designer">
+    <div class="avatar" style="background-image: url('https://ca.slack-edge.com/E07UFG9853K-U5NRTASUC-66702a3de5da-72');"></div>
+    <div class="details">
+      <div class="name">Sabine</div>
+      <div class="task"><span>CFR Fellow Photoshot</span><span class="size">XL</span></div>
+      <div class="task"><span>Daily Editorial </span><span class="size">S</span></div>
+    </div>
+  </div>
+
+
+
+
+  <div class="designer"><a href="https://airtable.com/app8RT1ivyhMzVokV/shrDunEQKJP9JsvRd" target="_blank">
+    <div class="avatar" style="background-image: url('https://ca.slack-edge.com/E07UFG9853K-U04KBAEU36F-0047e33f77bd-512');"></div></a>
+    <div class="details">
+      <div class="name">Sean</div>
+      <div class="task"><span>Annual Report: Microsite Design</span><span class="size">L</span></div>
+      <div class="task"><span>GCT: Research Design</span><span class="size">L</span></div>
+      <div class="task"><span>Hub Pages: #### </span><span class="size">M</span></div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="designer"><a href="https://airtable.com/app8RT1ivyhMzVokV/shrDunEQKJP9JsvRd" target="_blank">
+    <div class="avatar" style="background-image: url('https://ca.slack-edge.com/E07UFG9853K-U091PTQEEE6-gc48b9c23833-192');"></div></a>
+    <div class="details">
+      <div class="name">Anna (Intern)</div>
+      <div class="task"><span>10 Best / Worst</span><span class="size">M</span></div>
+    </div>
+  </div>
+
+
+
+  <div class="designer"><a href="https://airtable.com/app8RT1ivyhMzVokV/shrDunEQKJP9JsvRd" target="_blank">
+    <div class="avatar" style="background-image: url('https://ca.slack-edge.com/E07UFG9853K-UHSB135L0-a7e036c05de0-512');"></div></a>
+    <div class="details">
+      <div class="name">Ariel (Consultant)</div>
+      <div class="task"><span><i>Available for Work</i></span><span class="size">&nbsp;</span></div>
+    </div>
+  </div>  
+
+
+
+  
+</div>
+
+
+
+
+
+
+<script>
+  const d = new Date();
+  const options = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' };
+  const formattedDate = d.toLocaleDateString('en-US', options).replace(',', '');
+  
+  // Insert a comma after the weekday manually
+  const parts = formattedDate.split(' ');
+  const finalDate = `${parts[0]}, ${parts.slice(1).join(' ')}`;
+
+  document.getElementById("today").innerHTML = finalDate;
+</script>
+
+
+
 </body>
 </html>
