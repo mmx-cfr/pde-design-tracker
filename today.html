@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Weekly Redirect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <noscript>This page requires JavaScript to redirect.</noscript>
+  <script>
+// Redirect to "<month-lowercase>-<monday-day>-<year>.html?var=[timestamp]"
+// Example: "august-25-2025.html?var=1693075200000"
+
+(function redirectToWeeklyPage() {
+  function getNYLocalDate() {
+    const now = new Date();
+    const opts = {
+      timeZone: 'America/New_York',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    };
+    const parts = new Intl.DateTimeFormat('en-CA', opts)
+      .formatToParts(now)
+      .reduce((acc, p) => (acc[p.type] = p.value, acc), {});
+    return new Date(Date.UTC(
+      Number(parts.year),
+      Number(parts.month) - 1,
+      Number(parts.day),
+      Number(parts.hour),
+      Number(parts.minute),
+      Number(parts.second)
+    ));
+  }
+
+  function startOfWeekMonday(localNYDateAsUTC) {
+    const dow = localNYDateAsUTC.getUTCDay(); 
+    const daysFromMonday = (dow + 6) % 7;
+    const monday = new Date(localNYDateAsUTC);
+    monday.setUTCDate(monday.getUTCDate() - daysFromMonday);
+    monday.setUTCHours(0, 0, 0, 0);
+    return monday;
+  }
+
+  const nyNow = getNYLocalDate();
+  const monday = startOfWeekMonday(nyNow);
+
+  const monthLong = new Intl.DateTimeFormat('en-US', { month: 'long', timeZone: 'UTC' }).format(monday);
+  const day = monday.getUTCDate();
+  const year = monday.getUTCFullYear();
+
+  const filename = `${monthLong.toLowerCase()}-${day}-${year}.html`;
+
+  const basePath = ""; // e.g., "/weekly-pages/"
+  const cacheBuster = `?var=${Date.now()}`; // unique timestamp
+  const target = basePath + filename + cacheBuster;
+
+  window.location.replace(target);
+})();
+  </script>
+</head>
+<body>
+  Redirecting to this week's page…
+</body>
+</html>
