@@ -29,7 +29,16 @@
     .name{font-weight:bold;font-size:28px;margin-bottom:6px;line-height:1.1}
     .task{display:flex;justify-content:space-between;margin:3px 0;font-size:small;}
     .size{background:#e0e0e0;border-radius:12px;padding:2px 10px;font-size:small;color:#333;margin-left:12px;align-self:center;}
-    a{color:#333; text-decoration:none;}
+/*    a{color:#333; text-decoration:none;}*/
+      
+      
+    .task a {
+      color: inherit;
+      text-decoration: none;  
+      border-bottom: 1.5px solid #333;
+      padding-bottom: 2px; /* creates the offset */
+    }
+  
   </style>
 </head>
 <body>
@@ -67,7 +76,7 @@
         <div class="task"><span>Interview Abby (Cancelled)</span><span class="size">S</span></div>
  
         <div class="task"><span><BR>CFR.org Redesign:</span><span class="size" style="visibility: hidden">-</span></div>  
-        <a href="https://codepen.io/Mali-X/pen/gbaZqzQ" target="_blank"><div class="task"><span>Adobe CC Fonts: Share Embed + Findings</span><span class="size">S</span></div></a>
+        <div class="task"><span>Adobe CC Fonts: <a href="https://codepen.io/Mali-X/pen/gbaZqzQ" target="_blank">Share Embed + Findings</a></span><span class="size">S</span></div>
         <div class="task"><span>Review Tasks (Epic 541)</span><span class="size">S</span></div>
         <div class="task"><span>Update Synthesia Subscription w/Hanson</span><span class="size">S</span></div>
 
@@ -102,11 +111,14 @@
       <div class="details">
         <div class="name">Dalia</div>
           <!-- Video Wall Revisions -->
-        <div class="task"><span>Video Wall Revisions</span><span class="size">S</span></div>  
-        <div class="task"><span>GBA Photo Book project (kickoff)</span><span class="size">S</span></div>
-        <div class="task"><span>Rebrand: Social Media Templates</span><span class="size">S</span></div>
-<!--        <div class="task"><span>PPS Material</span><span class="size">S</span></div>-->
-        <div class="task"><span>Rebrand: Brand Bible Draft V2</span><span class="size">S</span></div>
+        <div class="task"><span>Video Wall Revisions R2</span><span class="size">S</span></div>  
+        <div class="task"><span>GBA Photo Book (Planning)</span><span class="size">S</span></div>
+        <div class="task"><span>Rebrand: Finalize Social Templates</span><span class="size">S</span></div>
+        <div class="task"><span>PPS Print + Digital (Planning)</span><span class="size">S</span></div>
+          <div class="task"><span><a href="https://www.dropbox.com/scl/fo/nnmju63ztf6xf4ocwmnyv/AIt_BA4JuSZkTgcLm08zioo?rlkey=ymqgnwaubmnx9jbw15xu22re9&dl=0" target="_blank">"The Age of Change" Digital + Print Promo</a></span><span class="size">S</span></div>
+          
+          
+          
       </div>
     </div>
 
@@ -116,24 +128,37 @@
     <!-- Juliann -->
     <div class="designer">
       <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U05FY0D866T-66fe4f979055-512');"></div>
+      
       <div class="details">
         <div class="name">Juliann</div>
-        <div class="task"><span>-</span><span class="size">-</span></div>  
-        <div class="task"><span>Comms: Hub Pages (Kickoff)</span><span class="size">-</span></div>
-        <div class="task"><span>-</span><span class="size">-</span></div>
-        <div class="task"><span>-</span><span class="size">-</span></div>
+<!--        <div class="task"><span>Company Pages: About, Contact, Careers, Membership</span><span class="size">M</span></div>-->
+        <div class="task"><span>Reports: Layout + Content Integration</span><span class="size" style="visibility: hidden;">S</span></div>  
+          <div class="task"><span><a href="#"> Optimal Deterrence</a></span><span class="size">S</span></div>
+          <div class="task"><span><a href="#"> American Views On Economic Leadership</a></span><span class="size">S</span></div>
+          <div class="task"><span><a href="#"> Tariffs On Trading Partners...</a></span><span class="size">S</span></div>
+          <div class="task"><span><a href="#"> No Limits...</a></span><span class="size">S</span></div>              
+          
+<!--        <div class="task"><span>Daily Brief Templates</span><span class="size">M</span></div>-->
+<!--        <div class="task"><span>CNC Newsletter</span><span class="size">S</span></div>-->
       </div>
+        
     </div>
+        
+<!--        recirc card system-->
+<!--        Data viz next steps-->
 
     <!-- Michael -->
     <div class="designer">
       <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-UBR3SU9FW-f31afeb2ec66-512');"></div>
       <div class="details">
         <div class="name">Michael</div>
-        <div class="task"><span>-</span><span class="size">-</span></div>  
-        <div class="task"><span>-</span><span class="size">-</span></div>
-        <div class="task"><span>-</span><span class="size">-</span></div>
-        <div class="task"><span>-</span><span class="size">-</span></div>
+          
+        <div class="task"><span>DataViz Starter Kit (Map Guidance)</span><span class="size">M</span></div>
+        <div class="task"><span><a href="https://observablehq.com/@cfr-design/flow-map">Flow map of drugs from S.America</a></span><span class="size">S</span></div>          
+<!--          <div class="task"><span>Datawrapper Automation: Maps</span><span class="size">M</span></div>-->
+          
+        <div class="task"><span>PPS Maps + DataViz (Planning) </span><span class="size">S</span></div>
+<!--        <div class="task"><span>Daily DataViz: Map Support</span><span class="size">S</span></div>-->
       </div>
     </div>
 
@@ -142,28 +167,29 @@
       <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U5NRTASUC-66702a3de5da-72');"></div>
       <div class="details">
         <div class="name">Sabine</div>
-        <div class="task"><span>-</span><span class="size">-</span></div>  
-        <div class="task"><span>-</span><span class="size">-</span></div>
-        <div class="task"><span>-</span><span class="size">-</span></div>
-        <div class="task"><span>-</span><span class="size">-</span></div>
+        <div class="task"><span>Final NY50 Exhibit Options</span><span class="size">M</span></div>  
+        <!-- <div class="task"><span>-</span><span class="size">-</span></div> -->
+        <div class="task"><span>Daily Editorial</span><span class="size">S</span></div>
+        <!-- <div class="task"><span>-</span><span class="size">-</span></div> -->
       </div>
     </div>
 
     <!-- Sean -->
     <div class="designer">
-      <a href="https://airtable.com/app8RT1ivyhMzVokV/shrDunEQKJP9JsvRd" target="_blank" style="text-decoration:none;">
+      <a href="https://airtable.com/app8RT1ivyhMzVokV/shrDunEQKJP9JsvRd" target="_blank">
         <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U04KBAEU36F-0047e33f77bd-512');"></div>
       </a>
       <div class="details">
         <div class="name">Sean</div>
-        <div class="task"><span>-</span><span class="size">-</span></div>  
-        <div class="task"><span>-</span><span class="size">-</span></div>
-        <div class="task"><span>-</span><span class="size">-</span></div>
-        <div class="task"><span>-</span><span class="size">-</span></div>
+        <div class="task"><span><a href="https://www.figma.com/design/croxX1AEfRH3dfhQ14LrtQ/Annual-Report-2025?node-id=0-1&t=D7yjapoQg1RRTKuq-1" target="_blank">Annual Report Layout Updates</a></span><span class="size">S</span></div>  
+        <div class="task"><span>GCT Wire Revisions</span><span class="size">S</span></div>
+        <div class="task"><span>Share Hub Page Updates</span><span class="size">S</span></div>
+        <div class="task"><span>PPS UI/UX Redesign (Planning)</span><span class="size">S</span></div>
       </div>
     </div>
 
-     
+     <!-- Finished updates to the Annual Report + revised the GCT wires. I'm adding this all to my tracker this afternoon before our 1-on-1. -->
+
   </div>
 
   <script>
