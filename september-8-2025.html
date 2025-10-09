@@ -52,16 +52,7 @@
 -->
     
 <div class="date-bar">
-  <select id="weekSelect" class="week-select" aria-label="Select week">
-    <option value="august-11-2025.html">Mon, 8/11/2025 — Thu, 8/14/2025</option>
-    <option value="august-18-2025.html">Mon, 8/18/2025 — Thu, 8/21/2025</option>
-    <option value="august-25-2025.html">Mon, 8/25/2025 — Thu, 8/28/2025</option>
-    <option value="september-1-2025.html">Mon, 9/1/2025 — Fri, 9/5/2025</option>
-    <option value="september-8-2025.html">Mon, 9/8/2025 — Fri, 9/12/2025</option>
-    <option value="september-15-2025.html">Mon, 9/15/2025 — Fri, 9/19/2025</option>
-    <option value="september-22-2025.html">Mon, 9/22/2025 — Fri, 9/26/2025</option>
-    <option value="september-29-2025.html">Mon, 9/29/2025 — Fri, 10/3/2025</option>
-  </select>
+  <select id="weekSelect" class="week-select" aria-label="Select week"></select>
 </div>    
 
   <div class="designer-list">
@@ -214,25 +205,7 @@
 
   </div>
 
-  <script>
-  // go to the page when user changes dropdown
-  document.getElementById('weekSelect').addEventListener('change', function () {
-    const baseUrl = this.value;
-    const cacheBuster = 'v=' + new Date().getTime();
-    const separator = baseUrl.includes('?') ? '&' : '?';
-    window.location.href = baseUrl + separator + cacheBuster;
-  });
-
-  // set dropdown to match current page (ignoring cache buster)
-  const currentFile = location.pathname.split('/').pop().toLowerCase();
-  const sel = document.getElementById('weekSelect');
-  for (let i = 0; i < sel.options.length; i++) {
-    if (sel.options[i].value.toLowerCase() === currentFile) {
-      sel.selectedIndex = i;
-      break;
-    }
-  }
-</script>
+  <script src="week-dropdown.js"></script>
 
 
 </body>
