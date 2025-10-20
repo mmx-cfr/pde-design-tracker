@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>-</title>
+  <style>
+    :root{
+      --bg:#f5f5f5; --fg:#333; --card:#fff; --border:#e9e9e9;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Arial, Helvetica, sans-serif;background:var(--bg);color:var(--fg);margin:0;padding:20px;}
+
+    /* Date dropdown bar */
+    .date-bar{display:flex;align-items:center;justify-content:center;margin:0 0 12px 0;gap:.5rem;}
+    .week-select{
+      appearance:none;-webkit-appearance:none;-moz-appearance:none;
+      font-size:16px;padding:10px 44px 10px 14px;border:1px solid var(--border);
+      border-radius:12px;background:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>') no-repeat right 14px center,#fff;
+      box-shadow:0 1px 2px rgba(0,0,0,.03);color:#111;min-width:360px;cursor:pointer;
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .week-select:focus{outline:none;border-color:#cfcfcf;box-shadow:0 0 0 4px rgba(0,0,0,.04);}
+
+    .designer-list{max-width:100%;margin:0 auto;background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,.05);}
+    .designer{display:flex;align-items:flex-start;padding:15px;border-bottom:1px solid #eee;}
+    .avatar{width:64px;height:64px;border-radius:50%;margin-right:15px;background:#ccc center/cover no-repeat;flex-shrink:0;}
+    .details{flex:1}
+    .name{font-weight:bold;font-size:28px;margin-bottom:6px;line-height:1.1}
+    .task{display:flex;justify-content:space-between;margin:3px 0;font-size:small;}
+    .size{background:#e0e0e0;border-radius:12px;padding:2px 10px;font-size:small;color:#333;margin-left:12px;align-self:center;}
+/*    a{color:#333; text-decoration:none;}*/
+      
+      
+    .task a {
+      color: inherit;
+      text-decoration: none;  
+      border-bottom: 1.5px solid #333;
+      padding-bottom: 2px; /* creates the offset */
+    }
+  
+  </style>
+</head>
+<body>
+
+  <!-- Date dropdown -->
+    
+<!--
+  <div class="date-bar">
+    <select id="weekSelect" class="week-select" aria-label="Select week"></select>
+  </div>
+-->
+    
+<div class="date-bar">
+  <select id="weekSelect" class="week-select" aria-label="Select week"></select>
+</div>    
+
+  <div class="designer-list">
+      
+      
+    <!-- Mali -->
+    <div class="designer">
+      <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U03DYJX5890-a6e026ca7976-512');"></div>
+      <div class="details">
+        <div class="name">Mali</div>
+        
+          <div class="task">MSP: Single-Session Pre-Event:<span class="size" style="display: none;">M</span></div>
+          
+<div class="task"><span>Headline resizing</span><span class="size">S</span></div>
+
+<div class="task"><span>Body text size adjustment</span><span class="size">S</span></div>
+
+<div class="task"><span>Gray-on-dark contrast correction</span><span class="size">S</span></div>
+
+<div class="task"><span>“Choose Session” label revision</span><span class="size">S</span></div>
+
+<div class="task"><span>Single-session auto-selection</span><span class="size">S</span></div>
+
+<div class="task"><span>Full time range formatting</span><span class="size">S</span></div>
+
+<!-- <div class="task"><span>Duplicate date/time cleanup</span><span class="size">S</span></div> -->
+
+         <!-- <div class="task"><span>Erik: Onboarding</span><span class="size">S</span></div> -->
+          <!-- <div class="task"><span>Getty Image Request (Outreach)</span><span class="size">S</span></div> -->
+          
+          <!-- <div class="task"><span>Schedule Jira &amp; Confluence Refresh w/Design </span><span class="size">S</span></div> -->
+          
+<!--
+        <div class="task"><span>Business and Geopolitics Hub Logo</span><span class="size">S</span></div>
+        <div class="task"><span>Confim seating for Erik</span><span class="size">S</span></div>
+ -->
+        
+        
+        
+
+<!--         <div class="task"><span>New Hire - Brand Designer:</span><span class="size" style="visibility: hidden">-</span></div>  
+        <div class="task"><span>Review Erol Feedback w/Noah</span><span class="size">S</span></div>
+        <div class="task"><span>Interview Erik (R2)</span><span class="size">S</span></div> -->
+ 
+<!--        <div class="task"><span><BR>-</span><span class="size" style="visibility: hidden">-</span></div>  -->
+      <!-- <div class="task"><span>Redesign Notes: <a href="https://docs.google.com/document/d/1_yvD_EAMTvUMcNYPDG1A8j-_s2N1Yei2s9AEabXxz3c/edit?usp=sharing" target="_blank">Recirc + Reports</a></span><span class="size">S</span></div>  -->
+        
+<!--
+         <div class="task"><span>Update Synthesia Subscription w/Hanson</span><span class="size">S</span></div> 
+
+        <div class="task"><span><BR>Illustrations: How I Got Started In Foreign Policy</a></span><span class="size" style="display: none;">&nbsp;</span></div>
+      <div class="task"><span><a href="https://www.cfr.org/article/how-i-got-my-career-foreign-policy-john-sawers" target="_blank">John Sawers (Article)</a></span><span class="size">S</span></div>
+      <div class="task"><span><a href="https://www.figma.com/design/BbRO6rLfOPnr5PYRkMsfmv/CFR-Social-System---Templates?node-id=4622-2&t=PpuEKfKoUMiQF0z5-1" target="_blank">John Sawers (Social)</a></span><span class="size">S</span></div>
+      <div class="task"><span><a href="https://www.figma.com/design/BbRO6rLfOPnr5PYRkMsfmv/CFR-Social-System---Templates?node-id=4622-2&t=PpuEKfKoUMiQF0z5-1" target="_blank">Michelle Gavin (Social)</a></span><span class="size">S</span></div>
+      <div class="task"><span><a href="https://www.figma.com/design/BbRO6rLfOPnr5PYRkMsfmv/CFR-Social-System---Templates?node-id=4622-2&t=PpuEKfKoUMiQF0z5-1" target="_blank">Farah Pandith (Social)</a></span><span class="size">S</span></div>
+
+      <div class="task"><span><BR>New Monitor Request (Photo Editor)</span><span class="size">S</span></div>
+
+      <div class="task"><span><BR>New Hire</span><span class="size" style="display:none;">-</span></div>
+      <div class="task"><span>Erik Reference(s) (Follow Up)</span><span class="size">S</span></div>
+      <div class="task"><span>Complete New Hire Form</span><span class="size">S</span></div>
+-->
+
+
+        <!-- <div class="task"><span><a href="https://cfr.enterprise.slack.com/archives/D03ENBQE5NC/p1757679872614349" target="_blank">Create 3D Book Covers: Samples</a> </span><span class="size">S</span></div>
+        <div class="task"><span><a href="https://files.slack.com/files-pri/T07UFG9853K-F09EPF32FD3/csr-bookcover_template.png" target="_blank">Create 3D Report Cover: Sample</a></span><span class="size">S</span></div> -->
+
+        
+        
+<!--        <div class="task"><span>PPS Material</span><span class="size">S</span></div>-->
+<!--        <div class="task"><span>Rebrand</span><span class="size">S</span></div>-->
+      </div>
+    </div>
+      
+
+      
+    <!-- Lucky -->
+    <!--
+    <div class="designer">
+      <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U07GFSDTCLQ-29edd27c2ef4-512');"></div>
+      <div class="details">
+        <div class="name">Lucky</div>
+          
+        <div class="task"><span>-</span><span class="size">-</span></div>  
+        <div class="task"><span>-</span><span class="size">-</span></div>
+        <div class="task"><span>-</span><span class="size">-</span></div>
+        <div class="task"><span>-</span><span class="size">-</span></div>
+      </div>
+    </div>      
+      -->
+      
+      
+    <!-- Dalia -->
+    <div class="designer">
+      <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U01HZHC55FA-14156c1147dd-512');"></div>
+      <div class="details">
+        <div class="name">Dalia</div>
+          <!-- Video Wall Revisions -->
+        <div class="task"><span>GBA2025 Annual Meeting Program Book</span><span class="size">M</span></div>  
+          <div class="task"><span><a href="https://www.dropbox.com/scl/fi/gky5dkuq5nzx9wc8z3bsb/CFR_AR25_DonorListing_2025-10-03_v2.pdf?rlkey=mmuuvtgneja0ftmtwg4uozpbf&st=ld9yndlw&dl=0" target="_blank">Annual Dinner Program 2025 (Donor Listing)</a></span><span class="size">S</span></div>  
+          <div class="task"><span>Annual Report Print PDF 2025 (DV Art Direction)
+              
+              &nbsp;&nbsp;
+
+              <a href="https://files.slack.com/files-pri/T07UFG9853K-F09KTC31EQH/ar_corporatememberprofile-2__1_.jpg" target="_blank">[1]</a>
+              &nbsp;
+              <a href="https://files.slack.com/files-pri/T07UFG9853K-F09KEK0JUPQ/image.png" target="_blank">[2]</a>
+              
+              </span> 
+              
+              
+              
+              <span class="size">S</span></div>    
+          
+          
+        <!-- <div class="task"><span>TFR Template: Rebrand Updates</span><span class="size">S</span></div>
+        <div class="task"><span>Annual Report: Data graphics for Memberships and Corporate</span><span class="size">S</span></div>
+        <div class="task"><span>IAF Branded Products: (Pen, Tumbler, Notebooks) </span><span class="size">M</span></div>        
+        <div class="task"><span><strike>NY50 Exhibit Review Prints</strike></span><span class="size"></strike>S</strike></span></div>  
+        <div class="task"><span><strike>Video Wall Revisions R3</strike></span><span class="size"></strike>S</strike></span></div>   -->
+
+          <!-- <div class="task"><span><a href="https://www.dropbox.com/scl/fo/nnmju63ztf6xf4ocwmnyv/AIt_BA4JuSZkTgcLm08zioo?rlkey=ymqgnwaubmnx9jbw15xu22re9&dl=0" target="_blank">"The Age of Change" Digital + Print Promo</a></span><span class="size">S</span></div> -->
+          
+
+          
+          
+      </div>
+    </div>
+
+
+    <!-- Juliann -->
+    <div class="designer">
+      <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U09K1JSAE7M-c915a20580e2-512');"></div>
+      
+      <div class="details">
+        <div class="name">Erik</div>
+        <div class="task"><span>International Affairs Fellowship<BR>Ad Production (Briefing)</span><span class="size">&nbsp;</span></div>
+        <div class="task"><span><BR>HR Onboarding</span><span class="size">&nbsp;</span></div>
+<!--
+        <div class="task"><span>Daily News Brief Updates</span><span class="size">S</span></div>
+        <div class="task"><span>Comms Hub Template (Kickoff Debrief) </span><span class="size">S</span></div>
+-->
+        
+        <!-- <div class="task"><span>Reports: Layout + Content Integration</span><span class="size" style="visibility: hidden;">S</span></div>   -->
+          
+          
+<!--        <div class="task"><span>Daily Brief Templates</span><span class="size">M</span></div>-->
+<!--        <div class="task"><span>CNC Newsletter</span><span class="size">S</span></div>-->
+      </div>
+        
+    </div>
+
+
+      
+    <!-- Juliann -->
+    <div class="designer">
+      <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U05FY0D866T-66fe4f979055-512');"></div>
+      
+      <div class="details">
+        <div class="name">Juliann</div>
+        <div class="task"><span>OOO</span><span class="size">&nbsp;</span></div>
+<!--
+        <div class="task"><span>Daily News Brief Updates</span><span class="size">S</span></div>
+        <div class="task"><span>Comms Hub Template (Kickoff Debrief) </span><span class="size">S</span></div>
+-->
+        
+        <!-- <div class="task"><span>Reports: Layout + Content Integration</span><span class="size" style="visibility: hidden;">S</span></div>   -->
+          
+          
+<!--        <div class="task"><span>Daily Brief Templates</span><span class="size">M</span></div>-->
+<!--        <div class="task"><span>CNC Newsletter</span><span class="size">S</span></div>-->
+      </div>
+        
+    </div>
+        
+<!--        recirc card system-->
+<!--        Data viz next steps-->
+
+    <!-- Michael -->
+    <div class="designer">
+      <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-UBR3SU9FW-f31afeb2ec66-512');"></div>
+      <div class="details">
+        <div class="name">Michael</div>
+          
+        <div class="task">OOO<span class="size">&nbsp;</span></div>
+<!--         <div class="task"><span>PPS Map Embed Testing</span><span class="size">S</span></div>  
+        <div class="task"><span>TFR Map Embed Testing</span><span class="size">S</span></div>  
+        <div class="task"><span>Annual Report: Finance Table</span><span class="size">S</span></div>    
+ -->          
+          
+          
+<!--          Migration should be 95% complete, outliers and training of Dataviz team on update scripts for building graphics-->
+
+
+
+<!--PPS tech testing map embeding into the CMS-->
+<!--Lots of Troubleshooting TFR embeds on Mobile/Desktop-->
+<!--Annual reports Finance Table, (a larger discussion needs to happen, starts with you before talking with Noah)-->
+
+<!--        <div class="task"><span>DV Embeds (Scroll Height Fix)</span><span class="size">M</span></div>          -->
+<!--          <div class="task"><span>Datawrapper Automation: Maps</span><span class="size">M</span></div>-->
+          
+        <!-- <div class="task"><span>PPS Maps + DataViz (Planning) </span><span class="size">S</span></div> -->
+<!--        <div class="task"><span>Daily DataViz: Map Support</span><span class="size">S</span></div>-->
+      </div>
+    </div>
+
+    <!-- Sabine --> 
+    <div class="designer">
+      <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U5NRTASUC-66702a3de5da-72');"></div>
+      <div class="details">
+        <div class="name">Sabine</div>
+        <!-- <div class="task"><span>OOO</span><span class="size">&nbsp;</span></div>   -->
+          
+<!--
+        <div class="task"><span>UN Charter Article</span><span class="size">S</span></div> 
+        <div class="task"><span>CFR Fellow Photoshoot (Photo Edits)</span><span class="size">M</span></div> 
+-->        
+        <div class="task"><span>Daily Editorial</span><span class="size">S</span></div>
+
+        <!-- <div class="task"><span>-</span><span class="size">-</span></div> -->
+      </div>
+
+
+
+    </div>
+
+    <!-- Sean -->
+    <div class="designer">
+      <a href="https://airtable.com/app8RT1ivyhMzVokV/shrDunEQKJP9JsvRd" target="_blank">
+        <div class="avatar" style="background-image:url('https://ca.slack-edge.com/E07UFG9853K-U04KBAEU36F-0047e33f77bd-512');"></div>
+      </a>
+      <div class="details">
+        <div class="name">Sean</div>
+          
+          
+
+
+
+          
+        <div class="task"><span>PPS designs</span><span class="size">S</span></div>  
+        <div class="task"><span>TFR enhancement (Expand imagery)</span><span class="size">S</span></div>  
+        <div class="task"><span>Timeline enhancement (Date solution)</span><span class="size">S</span></div>  
+        <div class="task"><span><a href="https://www.cfr.org/annual-report-2025" target="_blank">Annual Report (Content swapping)</a></span><span class="size">S</span></div>    
+        <!-- <div class="task"><span>GCT Wire Revisions</span><span class="size">S</span></div> -->
+<!--
+        <div class="task"><span>QA Design Support (Content Migration)</span><span class="size">S</span></div>
+        <div class="task"><span>PPS (Roles + Responsibilities)</span><span class="size">S</span></div>
+        <div class="task"><span>Hackathon (Reorg)</span><span class="size">S</span></div>
+-->
+      </div>
+    </div>
+
+<!-- 
+
+    - Annual Report 2025
+    - Organize Preventive Priorities Survey
+    - Hub Updates R03
+
+39
+ -->    
+
+     <!-- Finished updates to the Annual Report + revised the GCT wires. I'm adding this all to my tracker this afternoon before our 1-on-1. -->
+
+  </div>
+
+  <script src="week-dropdown.js"></script>
+
+
+</body>
+</html>
