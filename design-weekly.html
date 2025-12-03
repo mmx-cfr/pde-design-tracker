@@ -94,18 +94,10 @@
   <div id="output"></div>
 
 <script>
+
 /* ============================================================
    1. CONFIG
    ============================================================ */
-
-
-
-async function fetchAirtable(table) {
-  const url = `https://sharepro.cloud/airtable/v3/api/airtable-proxy.php?table=${encodeURIComponent(table)}&limit=50`;
-  const res = await fetch(url);
-  return await res.json();
-}
-  
 
 const CONFIG = {
   Erik: {
@@ -114,10 +106,9 @@ const CONFIG = {
     table: "Tracker",
     fields: {
       project: "Project / Description",
-      start: "Start Date",      // new
-      due: "Due Date",          // treated as end if no End Date
+      start: "Start Date",
+      due: "Due Date",
       loe: "Level of Effort"
-      // TASKS is a shared field name in each table (optional)
     }
   },
   Michael: {
@@ -126,7 +117,7 @@ const CONFIG = {
     table: "Design Projects",
     fields: {
       project: "Phase & Action",
-      start: "Start Date",      // new
+      start: "Start Date",
       due: "Due Date",
       loe: "Level of Effort"
     }
@@ -138,7 +129,7 @@ const CONFIG = {
     fields: {
       project: "Project Name",
       action: "Action & Phases",
-      start: "Start Date",      // new
+      start: "Start Date",
       due: "Due Date"
     }
   },
@@ -149,7 +140,7 @@ const CONFIG = {
     fields: {
       project: "Project Name",
       action: "Action & Phases",
-      start: "Start Date",      // new
+      start: "Start Date",
       due: "Due Date"
     }
   },
@@ -162,14 +153,14 @@ const CONFIG = {
       content: "Content Title",
       loe: "Level of Effort",
       start: "Start Date",
-      end: "End Date",          // if present, use as end
-      due: "Due Date"           // fallback end if End Date missing
+      end: "End Date",
+      due: "Due Date"
     }
   }
 };
 
 /* ============================================================
-   2. AIRTABLE FETCH WITH PAGINATION
+   2. AIRTABLE FETCH VIA PROXY (WITH PAGINATION)
    ============================================================ */
 
 async function fetchAllRecords(baseId, table) {
@@ -177,20 +168,23 @@ async function fetchAllRecords(baseId, table) {
   let offset = null;
 
   do {
-    let url = new URL(`https://api.airtable.com/v0/${baseId}/${encodeURIComponent(table)}`);
-    if (offset) url.searchParams.set("offset", offset);
+    const params = new URLSearchParams({
+      base: baseId,
+      table: table
+    });
+    if (offset) params.set("offset", offset);
 
-//    const res = await fetch(url, {
-//      headers: { Authorization: `Bearer ${AIRTABLE_PAT}` }
- //   });
+    const proxyUrl =
+      "https://sharepro.cloud/airtable/v3/api/airtable-proxy.php?" +
+      params.toString();
 
-      const proxyUrl = `https://sharepro.cloud/airtable/v3/api/airtable-proxy.php?table=${encodeURIComponent(table)}&limit=50`;
-      const res = await fetch(proxyUrl);
-   
-    if (!res.ok) throw new Error("Airtable error " + res.status);
+    const res = await fetch(proxyUrl);
+    if (!res.ok) {
+      throw new Error("Proxy error " + res.status);
+    }
 
     const json = await res.json();
-    all = all.concat(json.records);
+    all = all.concat(json.records || []);
     offset = json.offset;
   } while (offset);
 
@@ -234,7 +228,7 @@ function populateWeekDropdown() {
   today.setHours(0, 0, 0, 0);
 
   const day = today.getDay();
-  const diff = (day === 0 ? -6 : 1 - day);
+  const diff = day === 0 ? -6 : 1 - day;
   const baseMonday = new Date(today);
   baseMonday.setDate(today.getDate() + diff);
 
@@ -250,7 +244,6 @@ function populateWeekDropdown() {
     weeks.push({ value: ms, label: `${formatPretty(ms)} → ${formatPretty(ss)}` });
   }
 
-  // Sort descending: future → past
   weeks.sort((a, b) => new Date(b.value) - new Date(a.value));
 
   for (const w of weeks) {
@@ -270,7 +263,6 @@ function populateWeekDropdown() {
 function parseTasks(tasksText, fallbackYear) {
   if (!tasksText) return [];
 
-  // Accept "-", "–", or "—"
   const DASH = "[-–—]";
 
   const lines = tasksText
@@ -282,25 +274,10 @@ function parseTasks(tasksText, fallbackYear) {
   let currentYear = fallbackYear;
   let lastMonth = null;
 
-  // --------------------------------------------------------------------
-  // Two-date RANGE pattern:
-  //   11/26–12/05 – Description
-  //   11/26-12/05—Description
-  //   11/26/2025–12/05/2025 – Description
-  //
-  // Regex breakdown:
-  //   MM/DD(/YYYY)?  DASH  MM/DD(/YYYY)?  DASH  description
-  // --------------------------------------------------------------------
   const rangeRegex = new RegExp(
     `^(\\d{1,2})\\/(\\d{1,2})(?:\\/(\\d{4}))?\\s*${DASH}\\s*(\\d{1,2})\\/(\\d{1,2})(?:\\/(\\d{4}))?\\s*${DASH}\\s*(.+)$`
   );
 
-  // --------------------------------------------------------------------
-  // Single-date pattern:
-  //   12/6 – Publish Lorem Ipsum
-  //   12/6—Publish
-  //   12/6/2025 - Review
-  // --------------------------------------------------------------------
   const singleRegex = new RegExp(
     `^(\\d{1,2})\\/(\\d{1,2})(?:\\/(\\d{4}))?\\s*${DASH}\\s*(.+)$`
   );
@@ -317,7 +294,6 @@ function parseTasks(tasksText, fallbackYear) {
       let d2 = parseInt(m[5], 10);
       let y2 = m[6] ? parseInt(m[6], 10) : currentYear;
 
-      // Handle year rollover when year is missing
       if (!m[6] && m2 < m1) {
         y2 = y1 + 1;
       }
@@ -337,7 +313,6 @@ function parseTasks(tasksText, fallbackYear) {
       continue;
     }
 
-    // SINGLE DATE
     m = line.match(singleRegex);
     if (m) {
       let month = parseInt(m[1], 10);
@@ -367,8 +342,6 @@ function parseTasks(tasksText, fallbackYear) {
   return parsed;
 }
 
-
-
 function dateInWeek(isoDate, mondayStr) {
   const d = forceISO(isoDate);
   if (!d) return false;
@@ -385,11 +358,9 @@ function rangeOverlapsWeek(startStr, endStr, mondayStr) {
   const monday = forceISO(mondayStr);
   const sunday = forceISO(getSunday(mondayStr));
 
-  // Overlap if start ≤ sunday AND end ≥ monday
-  return (start <= sunday && end >= monday);
+  return start <= sunday && end >= monday;
 }
 
-// For each record: determine start and end using config fields
 function getRecordRange(fields, cfg) {
   const startField = cfg.fields.start;
   const endField   = cfg.fields.end;
@@ -406,7 +377,6 @@ function getRecordRange(fields, cfg) {
     end = start;
   }
 
-  // If no start but we do have an end, treat end as both start and end
   if (!start && end) {
     start = end;
   }
@@ -414,7 +384,6 @@ function getRecordRange(fields, cfg) {
   return { start, end };
 }
 
-// For TASKS fallback year: prefer a known date from the record
 function getFallbackYear(fields, cfg) {
   const { start, end } = getRecordRange(fields, cfg);
   let baseDate = null;
@@ -435,7 +404,7 @@ function buildLabel(project, content, action) {
 }
 
 /* ============================================================
-   6. MAIN LOAD LOGIC (Revisions 1 & 2)
+   6. MAIN LOAD LOGIC
    ============================================================ */
 
 async function loadWeek() {
@@ -443,9 +412,7 @@ async function loadWeek() {
   const mondayStr = document.getElementById("weekSelect").value;
 
   status.textContent = "Loading…";
-  document.getElementById('output').style.visibility = 'hidden';
-
-  
+  document.getElementById("output").style.visibility = "hidden";
 
   try {
     const data = await Promise.all(
@@ -463,19 +430,15 @@ async function loadWeek() {
 
           const loe = cfg.fields.loe ? (f[cfg.fields.loe] || "") : "";
 
-          // const tasksTextRaw = f["TASKS"];
           const tasksTextRaw = f["TASKS"] || f["Tasks"] || f["tasks"];
-
           const hasTasks = tasksTextRaw && tasksTextRaw.trim().length > 0;
 
-          // TASKS override continuous week logic
           if (hasTasks) {
             const fallbackYear = getFallbackYear(f, cfg);
             const parsed = parseTasks(tasksTextRaw, fallbackYear);
 
             for (const item of parsed) {
               if (rangeOverlapsWeek(item.start, item.end, mondayStr)) {
-                // show the END date in the UI as the due date
                 personTasks.push({
                   name,
                   label: `${labelBase} – ${item.desc}`,
@@ -484,15 +447,11 @@ async function loadWeek() {
                 });
               }
             }
-            continue; // skip continuous range logic for this record
-          }
-
-          // No TASKS: show in every week overlapping [Start → End/Due]
-          const { start, end } = getRecordRange(f, cfg);
-          if (!start || !end) {
-            // If neither start nor end present, we have no temporal info; skip
             continue;
           }
+
+          const { start, end } = getRecordRange(f, cfg);
+          if (!start || !end) continue;
 
           if (rangeOverlapsWeek(start, end, mondayStr)) {
             const displayDue = end || start;
@@ -505,7 +464,6 @@ async function loadWeek() {
           }
         }
 
-        // Sort each person's tasks by date
         personTasks.sort((a, b) => {
           const da = forceISO(a.due);
           const db = forceISO(b.due);
@@ -518,8 +476,7 @@ async function loadWeek() {
 
     render(Object.fromEntries(data), mondayStr);
     status.textContent = "";
-    document.getElementById('output').style.visibility = 'visible';
-
+    document.getElementById("output").style.visibility = "visible";
   } catch (e) {
     console.error(e);
     status.textContent = "Error loading data.";
@@ -546,7 +503,6 @@ function formatShortPretty(iso) {
     return `${weekday}, ${month} ${day}, ${year}`;
   }
 }
-
 
 function render(allData, mondayStr) {
   const out = document.getElementById("output");
@@ -578,12 +534,8 @@ function render(allData, mondayStr) {
       continue;
     }
 
-    // ======================================================
-    // GROUP TASKS BY PROJECT
-    // ======================================================
     const grouped = {};
     for (const t of tasks) {
-      // Extract the project name from before the " – "
       const idx = t.label.indexOf("–");
       let project = t.label;
       let sub = "";
@@ -606,19 +558,13 @@ function render(allData, mondayStr) {
       });
     }
 
-    // ======================================================
-    // RENDER EACH PROJECT GROUP
-    // ======================================================
     for (const [project, obj] of Object.entries(grouped)) {
       const wrap = document.createElement("div");
       wrap.style.margin = "0.5rem 0 0.5rem 0";
 
-      // Project header
       const title = document.createElement("div");
       title.innerHTML = `<span class='project'>${project}:</span>`;
-      // title.style.marginBottom = "0.3rem";
 
-      // Add LOE on the right of the project header
       if (obj.loe) {
         const loe = document.createElement("span");
         loe.className = "loe";
@@ -628,16 +574,13 @@ function render(allData, mondayStr) {
 
       wrap.appendChild(title);
 
-      // Task list
       const ul = document.createElement("ul");
       for (const item of obj.list) {
         const li = document.createElement("li");
         li.textContent = `${item.desc} `;
         const d = document.createElement("span");
         d.className = "due";
-
         d.textContent = `(Due ${formatShortPretty(item.due)})`;
-
         li.appendChild(d);
         ul.appendChild(li);
       }
@@ -647,7 +590,6 @@ function render(allData, mondayStr) {
     }
   }
 }
-
 
 /* ============================================================
    8. INIT
@@ -659,6 +601,7 @@ function render(allData, mondayStr) {
   await loadWeek();
 })();
 </script>
+
 
 </body>
 </html>
