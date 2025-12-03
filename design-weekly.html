@@ -98,7 +98,14 @@
    1. CONFIG
    ============================================================ */
 
-const AIRTABLE_PAT = "patECZqY16UpaPX7M.7d8ca3f0ad394c03c5acf69927a21d2c855a74daeb90b043f72f1dee377faef7";
+
+
+async function fetchAirtable(table) {
+  const url = `https://sharepro.cloud/airtable/v3/api/airtable-proxy.php?table=${encodeURIComponent(table)}&limit=50`;
+  const res = await fetch(url);
+  return await res.json();
+}
+  
 
 const CONFIG = {
   Erik: {
